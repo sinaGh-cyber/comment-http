@@ -1,9 +1,8 @@
 import './App.css';
+import Discussion from './container/discussion/discussion';
 
 function App() {
-  return (
-    <></>
-  );
+  return <Discussion />;
 }
 
 export default App;
