@@ -1,0 +1,59 @@
+.formTag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.5rem;
+  background-color: rgb(200, 185, 255);
+  margin: 10px auto;
+  width: 100%;
+  color: rgb(55, 0, 128);
+  border-radius: 5px;
+
+  .inputDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    width: 100%;
+    input {
+      width: 50%;
+      height: 40px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    label {
+      margin-bottom: 10px;
+      font-size: larger;
+      font-weight: 800;
+    }
+    textarea {
+      resize: none;
+      width: 70%;
+      height: 200px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  }
+  button {
+    border: 2px solid rgb(0, 100, 0);
+    padding: 12px 25px;
+    border-radius: 8px;
+    background-color: rgb(104, 204, 104);
+    color: rgb(0, 90, 0);
+    font-size: large;
+    font-weight: 700;
+    margin: 0.5rem auto;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.02);
+      background-color: rgb(122, 221, 122);
+    }
+    &:active {
+      transform: scale(0.98);
+      background-color: rgb(84, 182, 84);
+    }
+  }
+}
