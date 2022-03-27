@@ -1,0 +1,27 @@
+.mainTag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(236, 215, 250);
+//   width: 100vw;
+  overflow: hidden;
+
+  section {
+    width: 99%;
+  }
+
+  .commentGroupSection {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: rgb(200, 185, 255);
+    border-radius: 5px;
+    padding: 5px;
+    overflow: hidden;
+    font-weight: 600;
+    color: rgb(55, 0, 128);
+    margin: 10px auto;
+  }
+}
