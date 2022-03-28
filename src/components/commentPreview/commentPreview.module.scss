@@ -1,0 +1,37 @@
+.commentPreviewContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(142, 111, 255, 0.712);
+  margin: 0.8rem 0.2rem;
+  border-radius: 8px;
+  width: 210px;
+  min-height: 120px;
+  word-break: break-all;
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none; /* Standard */
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    background-color: rgba(142, 111, 255, 0.596);
+  }
+  &:active {
+    transform: scale(0.98);
+    background-color: rgba(142, 111, 255, 0.904);
+  }
+
+  &.selected {
+    background-color: rgba(255, 200, 128, 0.897);
+    color: rgb(117, 66, 0);
+    &:hover {
+      background-color: rgba(255, 200, 128, 0.801);
+    }
+    &:active {
+      background-color: rgb(255, 200, 128);
+    }
+  }
+}
