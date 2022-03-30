@@ -9,19 +9,17 @@ const AddCommentForm = ({ sendComment }) => {
   const onChangeHandler = (e) => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
   };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (formInfo.name & formInfo.email) {
+      sendComment(formInfo);
+      setFormInfo(initState);
+    } else {
+      toast.error('invalid inputs');
+    }
+  };
   return (
-    <form
-      className={styles.formTag}
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (formInfo.name & formInfo.email) {
-          sendComment(formInfo);
-          setFormInfo(initState);
-        } else {
-          toast.error('invalid inputs');
-        }
-      }}
-    >
+    <form className={styles.formTag} onSubmit={submitHandler}>
       <div className={styles.inputDiv}>
         <label htmlFor="name">Name: </label>
         <input
