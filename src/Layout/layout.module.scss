@@ -1,0 +1,33 @@
+.mainTag {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: antiquewhite;
+}
+.footerTag {
+  width: 100vw;
+  min-height: 30px;
+  background-color: rgb(254, 223, 183);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  font-weight: 600;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    margin: 1rem 0;
+  }
+  p {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+  }
+}
