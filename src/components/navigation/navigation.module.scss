@@ -1,0 +1,28 @@
+.ulTag {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: auto;
+  width: 100vw;
+  background-color: rgb(251, 215, 159);
+
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    list-style: none;
+
+    a {
+      all: unset;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+    }
+
+    .activeTab {
+      background-color: rgb(255, 197, 122);
+    }
+  }
+}
