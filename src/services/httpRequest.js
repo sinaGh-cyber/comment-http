@@ -5,6 +5,9 @@ const httpRequests = {
   getAllComments() {
     return axios.get();
   },
+  getSingleComment(id) {
+    return axios.get(`/${id}`);
+  },
 
   addNewComment(body) {
     return axios.post('', body);
