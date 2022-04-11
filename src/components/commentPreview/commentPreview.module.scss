@@ -23,15 +23,4 @@
     transform: scale(0.98);
     background-color: rgba(142, 111, 255, 0.904);
   }
-
-  &.selected {
-    background-color: rgba(255, 200, 128, 0.897);
-    color: rgb(117, 66, 0);
-    &:hover {
-      background-color: rgba(255, 200, 128, 0.801);
-    }
-    &:active {
-      background-color: rgb(255, 200, 128);
-    }
-  }
 }

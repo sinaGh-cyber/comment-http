@@ -1,13 +1,8 @@
 import styles from './commentPreview.module.scss';
 
-const CommentPreview = ({ commentInfo, onClick, isSelected }) => {
+const CommentPreview = ({ commentInfo }) => {
   return (
-    <article
-      onClick={()=> onClick(commentInfo.id)}
-      className={`${styles.commentPreviewContainer} ${
-        isSelected && styles.selected
-      }`}
-    >
+    <article className={`${styles.commentPreviewContainer}`}>
       <p className={styles.namePTag}>{commentInfo.name}</p>
       <p className={styles.emailPTag}>{commentInfo.email}</p>
     </article>
