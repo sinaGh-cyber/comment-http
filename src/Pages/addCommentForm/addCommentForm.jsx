@@ -11,7 +11,7 @@ const AddCommentForm = ({ sendComment }) => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    if (formInfo.name & formInfo.email) {
+    if (formInfo.name && formInfo.email) {
       sendComment(formInfo);
       setFormInfo(initState);
     } else {
