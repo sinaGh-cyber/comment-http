@@ -1,5 +1,20 @@
 import styles from './fullComment.module.scss';
-const FullComment = ({ comment, onClick }) => {
+import { httpRequests } from '../../services/httpRequest';
+import { useEffect, useState } from 'react/cjs/react.development';
+import { withRouter } from 'react-router-dom';
+const FullComment = ({ onClick, match, history }) => {
+
+  const [comment, setComment] = useState({});
+  useEffect(() => {
+    httpRequests.getSingleComment(match.params.id).then((res) => {
+      setComment(res.data);
+
+    }).catch(err => {
+      console.log(err);
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <article className={styles.fullCommentContainer}>
       {!comment ? (
@@ -13,6 +28,7 @@ const FullComment = ({ comment, onClick }) => {
           <button
             onClick={() => {
               onClick(comment.id);
+              history.push('/')
             }}
           >
             Delete
@@ -23,4 +39,4 @@ const FullComment = ({ comment, onClick }) => {
   );
 };
 
-export default FullComment;
+export default withRouter(FullComment);
