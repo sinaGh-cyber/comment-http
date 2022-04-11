@@ -1,29 +1,31 @@
 import { useEffect, useState } from 'react/cjs/react.development';
 import { httpRequests } from '../../services/httpRequest';
 
-import CommentPreview from '../../components/commentPreview/commentPreview';
 import FullComment from '../../components/fullComment/fullComment';
-import AddCommentForm from '../../components/addCommentForm/addCommentForm';
+import AddCommentForm from '../../Pages/addCommentForm/addCommentForm';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './discussion.module.scss';
+import { BrowserRouter } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+
+import { Route } from 'react-router-dom';
+import HomePage from '../../Pages/HomePage/HomePage';
+import NotFoundPage from '../../Pages/not-found/not-found';
+
+import Layout from '../../Layout/layout';
 
 const Discussion = () => {
   const [comments, setComments] = useState([]);
-  const [selectedCommentId, setSelectedCommentId] = useState(null);
-
-  const commentSelector = (id) => {
-    setSelectedCommentId(id);
-  };
 
   const sendComment = async (info) => {
     try {
       const { status } = await httpRequests.addNewComment(info);
       if (status < 299 && 199 < status) {
-        const { data } = await httpRequests.getAllComments();
-        setComments(data);
+        const commentsClone = await httpRequests.getAllComments();
+        setComments(commentsClone.data);
         toast.success('New comment sended successfully');
       }
     } catch (err) {
@@ -47,12 +49,8 @@ const Discussion = () => {
     try {
       const { status } = await httpRequests.deleteComment(id);
       if (status < 299 && 199 < status) {
-        const commentsClone = await comments.filter(
-          (comment) => comment.id !== selectedCommentId
-        );
-        await setComments(commentsClone);
-        await setSelectedCommentId(null);
-        toast.success('deleted successfully');
+        const commentsClone = await httpRequests.getAllComments();
+        await setComments((p) => commentsClone.data);
       } else {
         toast.error('unknown error');
       }
@@ -62,39 +60,27 @@ const Discussion = () => {
   };
 
   return (
-    <main className={styles.mainTag}>
-      <ToastContainer theme="colored" />
+    <BrowserRouter>
+      <Layout>
+        <main className={styles.mainTag}>
+          <ToastContainer theme="colored" />
 
-      <section className={styles.commentGroupSection}>
-        {comments.length === 0 ? (
-          <p>No comments, please add a comment.</p>
-        ) : comments === null ? (
-          'Loading...'
-        ) : (
-          comments.map((comment) => {
-            return (
-              <CommentPreview
-                key={comment.id}
-                commentInfo={comment}
-                onClick={commentSelector}
-                isSelected={selectedCommentId === comment.id}
-              />
-            );
-          })
-        )}
-      </section>
+          <Switch>
+            <Route path={'/comment/:id'} key={0}>
+              <FullComment onClick={deleteHandler} />
+            </Route>
 
-      <section>
-        <FullComment
-          comment={comments.find((comment) => comment.id === selectedCommentId)}
-          onClick={deleteHandler}
-        />
-      </section>
-
-      <section>
-        <AddCommentForm sendComment={sendComment} />
-      </section>
-    </main>
+            <Route path={'/new-comment'} key={1}>
+              <AddCommentForm sendComment={sendComment} />
+            </Route>
+            <Route exact path={'/'} key={2}>
+              <HomePage comments={comments} />
+            </Route>
+            <Route path={'*'} key={3} component={NotFoundPage} />
+          </Switch>
+        </main>
+      </Layout>
+    </BrowserRouter>
   );
 };
 
